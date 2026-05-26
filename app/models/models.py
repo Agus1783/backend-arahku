@@ -1,8 +1,6 @@
 from datetime import datetime, timezone
 from typing import Literal
 
-# from typing import List, Optional
-from app.core.database import Base
 from sqlalchemy import (
     DECIMAL,
     JSON,
@@ -14,6 +12,9 @@ from sqlalchemy import (
     Text,
 )
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+# from typing import List, Optional
+from app.core.database import Base
 
 
 # USERS
@@ -28,7 +29,7 @@ class User(Base):
 
     email: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
 
-    password: Mapped[str] = mapped_column(String, index=True, nullable=False)
+    password: Mapped[str] = mapped_column(String(255), index=True, nullable=False)
 
     full_name: Mapped[str] = mapped_column(String(100), nullable=False)
 
