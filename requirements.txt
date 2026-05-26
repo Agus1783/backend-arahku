@@ -11,3 +11,14 @@ python-jose[cryptography]
 passlib[bcrypt]
 python-multipart
 gunicorn
+fastapi
+uvicorn
+sqlalchemy
+pymysql
+cryptography
+python-jose
+passlib[bcrypt]
+bcrypt
+python-dotenv
+httpx
+email-validator
