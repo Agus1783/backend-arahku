@@ -1,7 +1,13 @@
 # import os
 
+from dotenv import load_dotenv
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+
 from app.core.config import settings
 from app.core.database import engine
+from app.models.models import Base
 from app.routers.auth_router import router as auth_router
 from app.routers.career_router import router as career_router
 from app.routers.predict_router import router as predict_router
@@ -12,11 +18,8 @@ from app.routers.recommendation_router import (
 from app.routers.response_router import router as response_router
 from app.routers.session_router import router as session_router
 from app.routers.user_router import router as user_router
-from dotenv import load_dotenv
-from fastapi import FastAPI, Request
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
 
+Base.metadata.create_all(bind=engine)
 # Load env
 _ = load_dotenv()
 

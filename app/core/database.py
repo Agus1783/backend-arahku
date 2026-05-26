@@ -8,19 +8,14 @@ from sqlalchemy.orm import DeclarativeBase, sessionmaker
 _ = load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-if DATABASE_URL:
-    DATABASE_URL = DATABASE_URL.replace(
-        "mysql://",
-        "mysql+pymysql://",
-        1,
-    )
-# DATABASE_URL = (
-#     f"mysql+pymysql://{settings.DB_USER}"
-#     f":{settings.DB_PASSWORD}"
-#     f"@{settings.DB_HOST}"
-#     f":{settings.DB_PORT}"
-#     f"/{settings.DB_NAME}"
-# )
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL tidak ditemukan")
+
+DATABASE_URL = DATABASE_URL.replace(
+    "mysql://",
+    "mysql+pymysql://",
+    1,
+)
 
 engine = create_engine(DATABASE_URL, pool_pre_ping=True, echo=True)
 
